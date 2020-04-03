@@ -1,0 +1,140 @@
+html, body, #app {
+  height: 100%;
+}
+
+.shop-list {
+  background: #fff;
+  color: #333;
+  font-size: 14px;
+  height: 100%;
+  position: relative;
+}
+
+.shop-list .list-header {
+  height: 80px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  background: #fff;
+}
+
+.shop-list .list-header .list-header-content {
+  width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  line-height: 80px;
+  padding: 0 20px;
+}
+
+.shop-list .list-header .list-header-content .logo {
+  height: 44px;
+  vertical-align: middle;
+}
+
+.shop-list .list-header .list-header-content .divider {
+  display: inline-block;
+  margin: 0 25px;
+  width: 1px;
+  height: 30px;
+  background: #2589FF;
+  vertical-align: middle;
+}
+
+.shop-list .list-header .list-header-content .brief {
+  color: #2C6DD2;
+  vertical-align: middle;
+}
+
+.shop-list .list-body {
+  width: 100%;
+  height: 100%;
+  height: -moz-calc(100% - 80px);
+  height: -webkit-calc(100% - 80px);
+  height: calc(100% - 80px);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: #f8f8f8;
+  overflow-y: auto;
+}
+
+.shop-list .list-body .list-content {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  width: 1140px;
+  padding: 0 10px 20px;
+  margin: 0 auto;
+}
+
+.shop-list .list-body .shop-manage {
+  margin: 25px 0;
+  line-height: 32px;
+}
+
+.shop-list .list-body .shop-manage .page-title {
+  font-size: 18px;
+}
+
+.shop-list .list-body .store-item {
+  background: #fbfbfb;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.shop-list .list-body .store-item:hover {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.shop-list .list-body .store-item .store-main {
+  background: #fff;
+  padding: 20px;
+}
+
+.shop-list .list-body .store-item .store-name {
+  font-size: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shop-list .list-body .store-item .store-role {
+  margin-top: 10px;
+}
+
+.shop-list .list-body .store-item .store-role .role-tag {
+  padding: 0 8px;
+  display: inline-block;
+  height: 20px;
+  line-height: 18px;
+  color: #F55154;
+  border: 1px solid #F55154;
+  border-radius: 10px;
+}
+
+.shop-list .list-body .store-item .store-footer {
+  line-height: 40px;
+  height: 40px;
+  font-size: 12px;
+  color: 999;
+  padding: 0 20px 0 30px;
+}
+
+.shop-list .page-box .el-dialog, .shop-list .page-box .el-pager li {
+  background: transparent;
+}
+
+.shop-list .page-box .el-pagination button:disabled {
+  background-color: transparent;
+}
+
+.shop-list .page-box .el-pagination .btn-next, .shop-list .page-box .el-pagination .btn-prev {
+  background: center center no-repeat transparent;
+}

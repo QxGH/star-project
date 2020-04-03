@@ -1,0 +1,178 @@
+{
+  "tree": [
+    {
+      "key_name": "颜色",
+      "key_id": "",
+      "value": [
+        {
+          "id": "a1",
+          "name": "黑色",
+          "img_url": ""
+        },
+        {
+          "id": "a2",
+          "name": "灰色",
+          "img_url": ""
+        },
+        {
+          "id": "a3",
+          "name": "粉色",
+          "img_url": ""
+        }
+      ],
+      "key_str": "tree_1"
+    },
+    {
+      "key_name": "尺寸",
+      "key_id": "",
+      "value": [
+        {
+          "id": "b1",
+          "name": "9"
+        },
+        {
+          "id": "b2",
+          "name": "11"
+        }
+      ],
+      "key_str": "tree_2"
+    },
+    {
+      "key_name": "内存",
+      "key_id": "",
+      "value": [
+        {
+          "id": "c1",
+          "name": "64"
+        },
+        {
+          "id": "c2",
+          "name": "125"
+        }
+      ],
+      "key_str": "tree_3"
+    }
+  ],
+  "list": [
+    {
+      "id": "uuid",
+      "price": 2000,
+      "stock_num": 10000,
+      "value_id": {
+        "tree_1": "a1",
+        "tree_2": "b1",
+        "tree_3": "c1"
+      }
+    },
+    {
+      "id": "uuid",
+      "price": 2001,
+      "stock_num": 12000,
+      "value_id": {
+        "tree_1": "a1",
+        "tree_2": "b1",
+        "tree_3": "c2"
+      }
+    },
+    {
+      "id": "uuid",
+      "price": 2002,
+      "stock_num": 12010,
+      "value_id": {
+        "tree_1": "a1",
+        "tree_2": "b2",
+        "tree_3": "c1"
+      }
+    },
+    {
+      "id": "uuid",
+      "price": 2003,
+      "stock_num": 14010,
+      "value_id": {
+        "tree_1": "a1",
+        "tree_2": "b2",
+        "tree_3": "c2"
+      }
+    },
+    {
+      "id": "uuid",
+      "price": 2004,
+      "stock_num": 34010,
+      "value_id": {
+        "tree_1": "a2",
+        "tree_2": "b1",
+        "tree_3": "c1"
+      }
+    },
+    {
+      "id": "uuid",
+      "price": 2034,
+      "stock_num": 4310,
+      "value_id": {
+        "tree_1": "a2",
+        "tree_2": "b1",
+        "tree_3": "c2"
+      }
+    },
+    {
+      "id": "uuid",
+      "price": 334,
+      "stock_num": 9810,
+      "value_id": {
+        "tree_1": "a2",
+        "tree_2": "b2",
+        "tree_3": "c1"
+      }
+    },
+    {
+      "id": "uuid",
+      "price": 5364,
+      "stock_num": 5650,
+      "value_id": {
+        "tree_1": "a2",
+        "tree_2": "b2",
+        "tree_3": "c2"
+      }
+    },
+    {
+      "id": "uuid",
+      "price": 32464,
+      "stock_num": 3478,
+      "value_id": {
+        "tree_1": "a3",
+        "tree_2": "b1",
+        "tree_3": "c1"
+      }
+    },
+    {
+      "id": "uuid",
+      "price": 7454,
+      "stock_num": 8413,
+      "value_id": {
+        "tree_1": "a3",
+        "tree_2": "b1",
+        "tree_3": "c2"
+      }
+    },
+    {
+      "id": "uuid",
+      "price": 635,
+      "stock_num": 45273,
+      "value_id": {
+        "tree_1": "a3",
+        "tree_2": "b2",
+        "tree_3": "c1"
+      }
+    },
+    {
+      "id": "uuid",
+      "price": 2234,
+      "stock_num": 14434,
+      "value_id": {
+        "tree_1": "a3",
+        "tree_2": "b2",
+        "tree_3": "c2"
+      }
+    }
+  ]
+}
