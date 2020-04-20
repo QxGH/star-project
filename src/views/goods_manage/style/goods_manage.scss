@@ -1,0 +1,519 @@
+/**
+* 商品库 start
+*/
+.goods-manage {
+  padding: 10px;
+  .screen-box {
+    padding: 16px;
+    margin-top: 10px;
+    background: #FAFBFF;
+  }
+  .margin-left-20 {
+    margin-left: 20px;
+  }
+  .goods-form-inline {
+    .el-form-item {
+      margin-right: 20px;
+    }
+  }
+  .tabs-box {
+    margin-top: 20px;
+  }
+  .screen-btn-box {
+    padding-left: 82px;
+    .el-button {
+      padding: 0 15px;
+      height: 32px;
+    }
+  }
+  .pagetion-box {
+    text-align: right;
+    margin-top: 30px;
+  }
+  .goods-info {
+    .goods-pic {
+      vertical-align: middle;
+    }
+    .image-slot {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: #f5f7fa;
+      color: #909399;
+      text-align: center;
+      line-height: 40px;
+    }
+    .name {
+      vertical-align: middle;
+      margin-left: 10px;
+    }
+  }
+  .table-box {
+    .el-divider {
+      background-color: #409EFF;
+    }
+    .selection-del-box {
+      padding: 20px 14px;
+      .sel-selection-btn {
+        padding: 8px 20px;
+        margin-left: 20px;
+      }
+    }
+  }
+  .extend-dialog {
+    .el-dialog__body {
+      padding: 25px 25px 50px
+    }
+  }
+  .extend-dialog-body {
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 160px;
+      background: rgba(37,137,255,.5);
+      position: absolute;
+      left: 50%;
+      top: 65px;
+    }
+    .extend-item {
+      width: 50%;
+      float: left;
+      text-align: center;
+    }
+    .item-title {
+      font-size: 16px;
+      color: #666;
+      line-height:20px;
+    }
+    .item-qrcode {
+      width: 160px;
+      height: 160px;
+      margin: 16px auto;
+      .img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .item-tips {
+      font-size: 14px;
+      color: #999;
+      line-height: 20px;
+      &.red {
+        color: #FF5050;
+      }
+    }
+    .btn-box {
+      margin-top: 34px;
+      .el-button {
+        height: 32px;
+        padding: 0 10px;
+        min-width: 100px;
+        &+.el-button {
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+}
+/**
+* 商品库 end
+*/
+
+
+/**
+* 商品库 创建 start
+*/
+.goods-create {
+  padding: 10px;
+  .main-title {
+    height: 32px;
+    padding: 6px 14px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #333;
+    background-color: #FAFBFF;
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 16px;
+      background: #2589FF;
+      position: absolute;
+      left: 0;
+      top: 8px;
+    }
+  }
+  .form-box {
+    padding-top: 20px;
+    .el-radio.no-margin {
+      margin-right: 0;
+    }
+  }
+  .form-tips {
+    font-size: 14px;
+    color: #C0C4CC;
+    line-height: 20px;
+    height: 20px;
+    font-weight: 400;
+    margin-top: 8px;
+  }
+  .popover-icon {
+    color: #2589FF;
+    cursor: pointer;
+    margin-left: 6px;
+    margin-right: 20px;
+  }
+  .margin-left-20 {
+    margin-left: 20px;
+  }
+  .max-640 {
+    max-width: 640px;
+  }
+  .category-opt {
+    display: inline-block;
+    .text-btn {
+      cursor: pointer;
+      color: #2589FF;
+      &:hover {
+        color:rgba(37,137,255,.8);
+      }
+    }
+    .el-divider {
+      background-color: #2589FF;
+    }
+  }
+  .goods-img-list {
+    .item {
+      width: 88px;
+      height: 88px;
+      float: left;
+      margin-right: 16px;
+      background: #FAFBFF;
+      text-align: center;
+      cursor: pointer;
+      transition: all .3s;
+      &:hover {
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+      }
+    }
+    .img-item {
+      position: relative;
+      .img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      &:hover {
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+        .close-btn {
+          background:rgba(0,0,0,0.7);
+        }
+      }
+      .close-btn {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        background:rgba(0,0,0,0.5);
+        border-radius: 0 0 0 20px;
+        text-align: right;
+        .close-icon {
+          color: #fff;
+          font-size: 16px;
+        }
+      }
+    }
+    .add-item {
+      line-height: 88px;
+      color: #2589FF;
+      .add-icon {
+        margin-right: 3px;
+        font-weight: bold;
+      }
+    }
+  }
+  .tiymce-box {
+    max-width: 900px;
+  }
+  .selling-time-pick {
+    margin-top: 5px;
+  }
+  .buyLimitNumber-input {
+    width: 124px;
+    margin: 0 4px;
+    .el-input__inner {
+      padding: 0 10px;
+    }
+  }
+  .choose-store-tips {
+    color: #666666;
+    .blue-text {
+      color: #2589FF;
+    }
+    .handle-box {
+      color: #2589FF;
+      margin-left: 20px;
+      &:hover {
+        color:rgba(37,137,255,.8);
+      }
+      .el-divider {
+        background-color: #2589FF;
+      }
+    }
+    .text-btn {
+      cursor: pointer;
+    }
+  }
+  .validity-select {
+    margin: 0 5px;
+    width: 120px;
+  }
+  .sub-btn-box {
+    max-width: 710px;
+    text-align: center;
+    margin-bottom: 50px;
+    .el-button+.el-button {
+      margin-left: 30px;
+    }
+  }
+  .spec-setting-box {
+    padding: 0;
+    border:1px solid rgba(112,112,112,.1);
+    .grey-bg {
+      background: #FAFBFF;
+    }
+    .item {
+      padding: 0 10px;
+    }
+    .add-spec-box {
+      height: 40px;
+      line-height: 40px;
+      .add-spec-btn {
+        padding: 0;
+        width: 88px;
+        height: 24px;
+        background: #fff;
+        border: 1px solid #1890FF;
+        outline: 0;
+        color: #1890FF;
+        border-radius: 4px;
+        &:hover {
+          background: rgba(24,144,255,.05);
+        }
+        &:disabled {
+          color: #c0c4cc;
+          cursor: not-allowed;
+          background-image: none;
+          background-color: #fff;
+          border-color: #ebeef5;
+        }
+      }
+    }
+    .add-name-box {
+      padding-top: 12px;
+      height: 56px;
+      .remove-btn {
+        float: right;
+        border:1px solid rgba(0,0,0,0.15);
+        color: #666;
+        width: 64px;
+        height: 32px;
+        border-radius: 4px;
+        background: #fff;
+        &:hover {
+          color: #1890FF;
+          border-color: #1890FF;
+        }
+      }
+    }
+    .add-val-box {
+      padding: 20px 10px 10px;
+    }
+  }
+  .specs-table {
+    border:1px solid rgba(112,112,112,0.1);
+    width: 100%;
+    th {
+      background: #FAFBFF;
+      font-size: 14px;
+      color: #666;
+      font-weight: 500;
+      text-align: center;
+      height: 40px;
+      line-height: 40px;
+      border: 0;
+    }
+    td {
+      border-color: rgba(112,112,112,0.1);
+      height: 64px;
+      line-height: 64px;
+      min-width: 135px;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .el-input__inner {
+      height: 32px;
+    }
+  }
+  .import-card-box {
+    display: inline-block;
+    position: relative;
+    padding: 0 5px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 0;
+    .text-btn {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #409eff;
+    }
+    .import-card-input {
+      outline: 0;
+      border: 0;
+      padding: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 9;
+      cursor: pointer;
+    }
+  }
+  .import-tips {
+    line-height: 20px;
+    color: #999;
+    .blue {
+      color: #409eff;
+    }
+  }
+}
+.goods-spec-add {
+  &.add-spec-popover {
+    .add-name-input-box {
+      margin-bottom: 20px;
+    }
+    .footer-btn {
+      padding: 10px;
+      text-align: right;
+    }
+  }
+  .add-name-input-box {
+    &.disabled {
+      padding: 0;
+      .add-name-btn {
+        display: none;
+      }
+      .add-name-input {
+        width: 100%;
+        &:disabled {
+          background:rgba(206,216,243,0.15);
+          cursor: not-allowed;
+        }
+      }
+    }
+    width: 240px;
+    height: 32px;
+    border:1px solid rgba(125,151,162,0.16);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    padding-right: 50px;
+    .add-name-input {
+      display: block;
+      width: 190px;
+      height: 100%;
+      padding: 0;
+      .el-input {
+        display: block;
+        height: 100%;
+      }
+      .el-input__inner {
+        display: block;
+        height: 100%;
+        border: 0;
+        outline: 0;
+      }
+    }
+    .add-name-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: block;
+      width: 50px;
+      height: 100%;
+      border: 0;
+      border-left: 1px solid #EAEEF0;
+      color: #2589FF;
+      background: #fff;
+      &:hover {
+        background: rgba(37,137,255,.1);
+      }
+      &:disabled {
+        color: #8cc5ff;
+        cursor: not-allowed;
+        background-image: none;
+        background-color: #fff;
+      }
+    }
+  }
+  .val-item {
+    width: 88px;
+    height: 24px;
+    line-height: 22px;
+    border:1px solid rgba(0,0,0,0.15);
+    color: #707070;
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    float: left;
+    &.add-val {
+      border: 0;
+      color: #2589FF;
+      cursor: pointer;
+      &:hover {
+        color:rgba(37,137,255,.8);
+      }
+    }
+    .val-del {
+      display: block;
+      width: 14px;
+      height: 14px;
+      line-height: 14px;
+      border-radius: 50%;
+      position: absolute;
+      top: -7px;
+      right: -7px;
+      cursor: pointer;
+      text-align: center;
+      background:rgba(0,0,0,0.65);
+      &:hover {
+        background:rgba(0,0,0,0.75);
+      }
+      .icon {
+        font-size: 10px;
+        color: #fff;
+        transform: scale(.8);
+      }
+    }
+  }
+}
+/**
+* 商品库 创建 end
+*/

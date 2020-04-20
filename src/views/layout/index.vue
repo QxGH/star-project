@@ -7,7 +7,7 @@
       </el-aside>
       <el-container>
         <el-header style="height: 56px;">
-          <Header @changeCollapse="changeCollapseHandle"></Header>
+          <Header></Header>
         </el-header>
         <el-main>
           <div class="main-container">
@@ -29,23 +29,14 @@ export default {
   name: "layout",
   data() {
     return {
-      isCollapse: true,
       showSubMenu: false
     };
-  },
-  mounted() {
-    this.$api.home.index().then(res => {
-      console.log(res);
-    });
   },
   components: {
     AsideBar,
     Header
   },
   methods: {
-    changeCollapseHandle(val) {
-      this.isCollapse = val;
-    },
     showSubMenuHandle(val) {
       this.showSubMenu = val;
     }

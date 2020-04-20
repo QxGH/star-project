@@ -10,7 +10,7 @@ const config = [
     id: 2,
     title: '平台装修',
     icon: 'el-icon-receiving',
-    path: '',
+    path: '/paltformDesign/',
     children: [
       {
         title: '平台装修',
@@ -19,11 +19,11 @@ const config = [
         children: [
           {
             title: '平台装修',
-            path: '/paltformDesign',
+            path: '/paltformDesign/',
             roles: ['manager']
           }, {
             title: '精美模板',
-            path: '/1-2',
+            path: '/paltformDesign/exquisiteTemplate',
             roles: ['manager']
           }
         ]
@@ -34,15 +34,15 @@ const config = [
         children: [
           {
             title: '微信小程序',
-            path: '/1-2',
+            path: '/paltformDesign/appletSetting',
             roles: ['manager']
           }, {
             title: '微信公众号',
-            path: '/1-2',
+            path: '/paltformDesign/officialAccountSetting',
             roles: ['manager']
           }, {
             title: '支付设置',
-            path: '/1-2',
+            path: '/paltformDesign/paySetting',
             roles: ['manager']
           }
         ]
@@ -52,24 +52,31 @@ const config = [
     id: 3,
     title: '商品管理',
     icon: 'el-icon-goods',
-    path: '/2',
+    path: '/goodsManage/',
     children: [
       {
-        title: '商品库',
-        path: '/2-1',
-        roles: ['manager']
-      }, {
-        title: '商品分类',
-        path: '/2-2',
-        roles: ['manager']
-      }, {
-        title: '规格属性',
-        path: '/2-3',
-        roles: ['manager']
-      }, {
-        title: '商品设置',
-        path: '/2-4',
-        roles: ['manager']
+        title: '商品管理',
+        path: '',
+        roles: [],
+        children: [
+          {
+            title: '商品库',
+            path: '/goodsManage/',
+            roles: ['manager']
+          }, {
+            title: '商品分类',
+            path: '/goodsManage/goodsCategory',
+            roles: ['manager']
+          }, {
+            title: '规格属性',
+            path: '/goodsManage/goodsSpec',
+            roles: ['manager']
+          }, {
+            title: '商品设置',
+            path: '/goodsManage/goodsSetting',
+            roles: ['manager']
+          }
+        ]
       }
     ]
   }, {

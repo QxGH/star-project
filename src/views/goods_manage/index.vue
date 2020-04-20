@@ -1,7 +1,5 @@
 <template>
-  <div class="good-manage">
-    
-  </div>
+  <router-view />
 </template>
 
 <script>

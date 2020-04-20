@@ -1,4 +1,5 @@
 <template>
+  <!-- 店铺装修 -->
   <div class="paltform-design">
     <div class="template-list clearfix">
       <div class="tempalte-item" @click="addTemplateDialog = true">
@@ -259,7 +260,7 @@ export default {
     return {
       addTemplateDialog: false,
       templateFormDialog: false,
-      publicTipDialog: true,
+      publicTipDialog: false,
       publicTipDialogType: 'wxNoAuth',  // 发布提示类型 H5 | wxHasAudit-微信已有审核版本 | wxAudioing-微信正在审核中 | wxNoAuth-微信未授权
       templateForm: {
         name: "",

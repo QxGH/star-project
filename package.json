@@ -16,6 +16,7 @@
     "element-ui": "^2.13.0",
     "file-saver": "^2.0.2",
     "html2canvas": "^1.0.0-rc.5",
+    "js-base64": "^2.5.2",
     "js-cookie": "^2.2.1",
     "jszip": "^3.2.2",
     "qs": "^6.9.1",

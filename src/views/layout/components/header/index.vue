@@ -25,20 +25,10 @@ import { mapState } from "vuex"
 
 export default {
   name: "headerBar",
-  data() {
-    return {
-      isCollapse: false
-    };
-  },
   computed: {
     ...mapState(['breadcrumb'])
   },
   methods: {
-    toggleAside() {
-      let isCollapse = this.isCollapse;
-      this.isCollapse = !isCollapse;
-      this.$emit("changeCollapse", !isCollapse);
-    },
     command(event) {
       switch (event) {
         case "logout":

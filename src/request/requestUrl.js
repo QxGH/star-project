@@ -3,7 +3,7 @@ let url = {};
 // 开发环境
 if(process.env.NODE_ENV == 'development') {
   url = {
-    baseUrl: 'https://www.fastmock.site/mock/bd760dd8ed7013045d3016137fe3801f/api',
+    baseUrl: 'http://kernel.services.test.xingchen.cn/',
     qiniuUrl: 'https://up.qiniup.com',
     staticUrl: 'https://qiniu.xingchen.cn'
   };

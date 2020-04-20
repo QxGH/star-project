@@ -35,28 +35,16 @@
             <div class="logo-box">{{item.title}}</div>
             <div class="aside-main">
               <template v-for="(item_, index_) in item.children">
-                <div class="sub-menu-item" :key="index_" @click="chickRouter(item, item_, index_)">
-                  {{item_.title}}
-                </div>
+                <div
+                  class="sub-menu-item"
+                  :class="{'active': childrenActive == item_.path}"
+                  :key="index_"
+                  @click="chickRouter(item, item_, index_)"
+                >{{item_.title}}</div>
               </template>
             </div>
           </div>
         </template>
-        
-        <!-- <div class="sub-menu-box">
-          <div class="logo-box">渠道设置</div>
-          <div class="aside-main">
-            <div class="sub-menu-item">
-              微信小程序
-            </div>
-            <div class="sub-menu-item">
-              微信公众号
-            </div>
-            <div class="sub-menu-item">
-              支付设置
-            </div>
-          </div>
-        </div> -->
       </vuescroll>
     </div>
   </div>
@@ -67,6 +55,7 @@ import vuescroll from "vuescroll";
 import asideConfig from "@/router/asideConfig";
 import { getUserRole } from "@/tools/Cookie";
 import Logo from "@/components/logo";
+import { mapMutations } from "vuex";
 
 export default {
   name: "AsideBar",
@@ -75,14 +64,17 @@ export default {
       asideConfig,
       defaultActive: "/",
       showSubMenu: false,
-      childrenMenu: []
+      childrenMenu: [],
+      childrenActive: ""
     };
   },
-  props: {
-    isCollapse: {
-      type: Boolean,
-      default: false
+  watch: {
+    $route(to, from) {
+      this.activeMenu();
     }
+  },
+  created() {
+    this.activeMenu("created");
   },
   components: {
     Logo,
@@ -93,6 +85,44 @@ export default {
     console.log(getUserRole());
   },
   methods: {
+    ...mapMutations(["CHANGE_BREADCRUMB"]),
+    activeMenu(type) {
+      let path = this.$route.path;
+      let arr = path.split("/");
+      console.log(arr);
+      let parentActive = `/${arr[1]}/`; // 父菜单选中
+      let childrenActive = ""; // 子菜单选中
+      let breadcrumb = ""; // 面包屑
+
+      for (let item of asideConfig) {
+        if (item.path === parentActive && item.children) {
+          childrenActive = `/${arr[1]}/${arr[2]}`;
+          this.childrenActive = childrenActive; // 设置子级选中
+          if (type == "created") {
+            // 页面创建时 设置面包屑
+            for (let item_ of item.children) {
+              for (let ch of item_.children) {
+                if (childrenActive == ch.path) {
+                  breadcrumb = ch.title;
+                  break;
+                }
+              }
+            };
+          };
+          this.childrenMenu = item.children;
+          this.showSubMenu = true; // 显示子级菜单
+          this.$emit("showSubMenu", true);
+          break;
+        } else if (type == "created") {
+          breadcrumb = item.title;
+        }
+      }
+      if (type == "created") {
+        this.CHANGE_BREADCRUMB(breadcrumb); // 设置面包屑
+      }
+
+      this.defaultActive = parentActive;
+    },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },
@@ -111,9 +141,16 @@ export default {
           this.$emit("showSubMenu", false);
         }
       }
+      // 修改面包屑文字
+      if (val.path !== "") {
+        this.CHANGE_BREADCRUMB(val.title);
+      }
     },
     chickRouter(item, item_, index_) {
-      this.$router.push(item_.path)
+      // 修改面包屑文字
+      this.CHANGE_BREADCRUMB(item_.title);
+      // 跳转路由
+      this.$router.push(item_.path);
     }
   },
   filters: {

@@ -42,7 +42,7 @@
   cursor: pointer;
 }
 
-.aside .sub-menu .sub-menu-box .sub-menu-item:hover {
+.aside .sub-menu .sub-menu-box .sub-menu-item:hover, .aside .sub-menu .sub-menu-box .sub-menu-item.active {
   color: #2589FF;
 }
 

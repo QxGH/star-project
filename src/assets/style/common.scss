@@ -55,8 +55,6 @@ table,tr,td {
 }
 
 .clearfix { 
-  clear: both; 
-  *zoom:1;
   &:after {
     content: "";
     display: block; 
@@ -66,7 +64,29 @@ table,tr,td {
   }
 }
 
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
 .mce-content-body  {
   font-size: 14px;
 }
 
+button {
+  cursor: pointer;
+  outline: 0;
+}
+
+.normal-btn {
+  padding: 0;
+  width: 120px;
+  height: 32px;
+}

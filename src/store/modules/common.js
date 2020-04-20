@@ -1,4 +1,4 @@
-const test = {
+const common = {
     state: {
     },
     mutations: {
@@ -9,4 +9,4 @@ const test = {
     }
 }
 
-export default test;
+export default common;

@@ -32,7 +32,8 @@ let config = {
 			'axios': 'axios',
 			'qs': 'Qs',
 			'element-ui': 'ELEMENT'
-		}
+		},
+		devtool: 'source-map'
 	}
 };
 
