@@ -10,7 +10,13 @@
       <div class="main-title">商品类型</div>
       <div class="form-box">
         <el-form-item label="商品类型：" prop="productType">
-          <el-radio class="no-margin" v-model="goodsForm.productType" :disabled="editID !== ''" label="1" border>实物商品</el-radio>
+          <el-radio
+            class="no-margin"
+            v-model="goodsForm.productType"
+            :disabled="editID !== ''"
+            label="1"
+            border
+          >实物商品</el-radio>
           <el-popover
             placement="top-start"
             title="说明"
@@ -20,7 +26,13 @@
           >
             <i slot="reference" class="el-icon-question popover-icon"></i>
           </el-popover>
-          <el-radio class="no-margin" v-model="goodsForm.productType" :disabled="editID !== ''" label="2" border>虚拟商品</el-radio>
+          <el-radio
+            class="no-margin"
+            v-model="goodsForm.productType"
+            :disabled="editID !== ''"
+            label="2"
+            border
+          >虚拟商品</el-radio>
           <el-popover
             placement="top-start"
             title="说明"
@@ -32,47 +44,68 @@
           </el-popover>
           <p class="form-tips">商品类型选择后编辑时不可修改</p>
         </el-form-item>
-        <el-form-item label="核销码生成方式：" prop="cardType">
-          <el-radio class="no-margin" v-model="goodsForm.cardType" label="0">平台自动生成</el-radio>
-          <el-popover
-            placement="top-start"
-            title="说明"
-            width="200"
-            trigger="hover"
-            content="需在门店管理中添加对应核销员，核销员可使用核销小程序端扫码核销"
-          >
-            <i slot="reference" class="el-icon-question popover-icon"></i>
-          </el-popover>
-          <el-radio class="no-margin" v-model="goodsForm.cardType" label="1">批量导入核销码</el-radio>
-          <el-popover
-            placement="top-start"
-            title="说明"
-            width="200"
-            trigger="hover"
-            content="批量导入核销码数量后台将不记录用户购买之后的使用状态，商品库存以导入的核销码数量为准；"
-          >
-            <i slot="reference" class="el-icon-question popover-icon"></i>
-          </el-popover>
-        </el-form-item>
-        <template v-if="goodsForm.cardType === '1'">
-          <el-form-item label="导入核销码：" prop="importCard">
-            <div class="import-card-box">
-              <button class="text-btn">导入核销码</button>
-              <input type="file" name="importCard" class="import-card-input" title="">
-            </div>
-            <el-divider direction="vertical"></el-divider>
-            <div class="import-card-box">
-              <button class="text-btn">下载模板</button>
-            </div>
-            <p class="import-tips">
-              请在下载模板后，按照模板要求导入
-            </p>
-            <p class="import-tips">
-              已导入 <span class="blue">100</span> 个核销码
-            </p>
+        <template v-if="goodsForm.productType === '2'">
+          <el-form-item label="核销码生成方式：" prop="cardType">
+            <el-radio class="no-margin" v-model="goodsForm.cardType" label="0">平台自动生成</el-radio>
+            <el-popover
+              placement="top-start"
+              title="说明"
+              width="200"
+              trigger="hover"
+              content="需在门店管理中添加对应核销员，核销员可使用核销小程序端扫码核销"
+            >
+              <i slot="reference" class="el-icon-question popover-icon"></i>
+            </el-popover>
+            <el-radio class="no-margin" v-model="goodsForm.cardType" label="1">批量导入核销码</el-radio>
+            <el-popover
+              placement="top-start"
+              title="说明"
+              width="200"
+              trigger="hover"
+              content="批量导入核销码数量后台将不记录用户购买之后的使用状态，商品库存以导入的核销码数量为准；"
+            >
+              <i slot="reference" class="el-icon-question popover-icon"></i>
+            </el-popover>
           </el-form-item>
+          <template v-if="goodsForm.cardType === '1'">
+            <el-form-item label="导入核销码：" prop="importCard">
+              <el-upload
+                class="import-card-box"
+                :show-file-list="false"
+                action=""
+                :on-change="inportCardChange"
+                :http-request="uploadCard"
+                :auto-upload="false"
+                accept=".csv, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                ref="importCardUpload"
+              >
+                <button class="text-btn">导入核销码</button>
+              </el-upload>
+              <!-- <div class="import-card-box">
+                <button class="text-btn">导入核销码</button>
+                <input
+                  type="file"
+                  name="file"
+                  ref="importCardInput"
+                  class="import-card-input"
+                  value
+                  @change="importCardHandle"
+                  title
+                />
+              </div> -->
+              <el-divider direction="vertical"></el-divider>
+              <div class="import-card-box">
+                <button class="text-btn" @click="downloadCardTemplate">下载模板</button>
+              </div>
+              <p class="import-tips" style="margin-bottom: 10px;" v-if="importCardFileName !== ''">{{importCardFileName}}</p>
+              <p class="import-tips">请在下载模板后，按照模板要求导入</p>
+              <!-- <p class="import-tips">
+                已导入
+                <span class="blue">100</span> 个核销码
+              </p> -->
+            </el-form-item>
+          </template>
         </template>
-       
       </div>
       <div class="main-title">基本信息</div>
       <div class="form-box">
@@ -80,7 +113,11 @@
           <el-input v-model="goodsForm.name" class="max-640" placeholder="请输入商品名称"></el-input>
         </el-form-item>
         <el-form-item label="商品分类：" prop="categoryId">
-          <el-select v-model="goodsForm.categoryId" @change="getCategorySubList" placeholder="请选择商品分类">
+          <el-select
+            v-model="goodsForm.categoryId"
+            @change="getCategorySubList"
+            placeholder="请选择商品分类"
+          >
             <el-option
               v-for="item in categoryList"
               :key="item.id"
@@ -109,7 +146,7 @@
           </div>
         </el-form-item>
         <el-form-item label="分享描述：" prop="description">
-          <el-input v-model="goodsForm.description" class="max-640" placeholder="请输入分享描述"></el-input>
+          <el-input v-model="goodsForm.description" class="max-640" placeholder="请输入分享描述" maxlength="36" show-word-limit></el-input>
           <p class="form-tips">微信分享给好友时会显示，建议36个字以内，勿出现红包、现金等诱导性词语</p>
         </el-form-item>
         <el-form-item label="商品图：" prop="atlas">
@@ -202,14 +239,18 @@
                             v-model="addSpecValForm.name"
                             placeholder="请输入规格名称"
                             maxlength="5"
-                          /> -->
+                          />-->
                           <el-input
                             class="add-name-input"
                             :maxlength="5"
                             v-model="addSpecValForm.name"
                             placeholder="请输入规格名称"
                           ></el-input>
-                          <button :disabled="addSpecValForm.name == ''" class="add-name-btn" @click="popAddspecVal(item.key_id)">新增</button>
+                          <button
+                            :disabled="addSpecValForm.name == ''"
+                            class="add-name-btn"
+                            @click="popAddspecVal(item.key_id)"
+                          >新增</button>
                         </div>
                         <div class="clearfix" v-if="addSpecValForm.list.length > 0">
                           <template v-for="(popItem, popIndex) in addSpecValForm.list">
@@ -238,7 +279,11 @@
                 </div>
               </template>
               <div class="add-spec-box grey-bg item">
-                <button class="add-spec-btn" @click="addSpecs" :disabled="createSpecs.length >= 3">添加规格</button>
+                <button
+                  class="add-spec-btn"
+                  @click="addSpecs"
+                  :disabled="createSpecs.length >= 3"
+                >添加规格</button>
               </div>
             </div>
             <!-- 多规格设置 end -->
@@ -439,8 +484,8 @@
         </template>
       </div>
       <div class="sub-btn-box">
-        <el-button class="normal-btn" @click="resetForm()">上架并继续添加</el-button>
-        <el-button type="primary" class="normal-btn" @click="submitValidate()">上架</el-button>
+        <el-button class="normal-btn" @click="resetForm()" :loading="submitLoading">上架并继续添加</el-button>
+        <el-button type="primary" class="normal-btn" @click="submitValidate()" :loading="submitLoading">上架</el-button>
       </div>
     </el-form>
   </div>
@@ -457,7 +502,11 @@ export default {
   },
   data() {
     return {
-      editID: '',// 当前编辑商品的id 为空时 为新建
+      editID: "", // 当前编辑商品的id 为空时 为新建
+      importCardFile: null, // 临时保存导入核销码文件
+      resProductUuid: "",
+      submitLoading: false,
+      importCardFileName: '', // 上传文件name
       createSpecs: [], // 创建规格
       thead: [],
       tbody: [],
@@ -473,12 +522,12 @@ export default {
       subCategoryList: [], // 商品子级分类
       goodsForm: {
         productType: "1", // 商品类型 0 未知 1 实物商品(需要物流发货信息) 2 虚拟商品,
-        cardType: '0',
+        cardType: "0",
         importCard: true, // 假数据 数据验证
         name: "", // 商品名称
         categoryId: "", // 父级分类ID
         subclassId: "", // 子级分类ID
-        description: "",  // 分享描述
+        description: "", // 分享描述
         atlas: [
           "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
         ], /// 商品图
@@ -514,7 +563,7 @@ export default {
           attrSpec: {}
         }
       ],
-      specArray: [],  // 后台返回的 规格参数
+      specArray: [], // 后台返回的 规格参数
       goodsFormRules: {
         productType: [
           { required: true, message: "请选择商品类型", trigger: "change" }
@@ -701,10 +750,10 @@ export default {
   },
   created() {
     let editID = this.$route.query.productUuid;
-    if(editID) {
+    if (editID) {
       this.editID = editID;
       this.getGoodsDetails(editID);
-    };
+    }
     this.getCategoryList();
   },
   methods: {
@@ -712,7 +761,7 @@ export default {
       console.log(val);
       this.goodsForm.details = val;
     },
-    getGoodsDetails(editID = '') {
+    getGoodsDetails(editID = "") {
       // 获取商品详情
       let formData = {
         productUuid: editID
@@ -736,41 +785,45 @@ export default {
       // 填入编辑商品的数据
       this.goodsForm.productType = data.productType.toString();
       this.goodsForm.name = data.name;
+      this.goodsForm.cardType = data.cardType;
       this.goodsForm.categoryId = data.categoryId;
       this.goodsForm.subclassId = data.subclassId;
       this.goodsForm.description = data.shareTheDescription;
       this.goodsForm.atlas = data.atlas;
       this.goodsForm.details = data.details;
       this.goodsForm.sellingType = data.sellingType.toString();
-      this.goodsForm.sellingTime = [data.sellingStartTime*1000, data.sellingEndTime*1000];
+      this.goodsForm.sellingTime = [
+        data.sellingStartTime * 1000,
+        data.sellingEndTime * 1000
+      ];
       this.goodsForm.buyLimitType = data.buyLimitType.toString();
       this.goodsForm.buyLimitNumber = data.buyLimitNumber;
       this.goodsForm.refundSupport = data.refundSupport.toString();
       let delivery = [];
-      data.isLogistic === 0 ? delivery.push('isLogistic') : null;
-      data.isPickUp === 0 ? delivery.push('isPickUp') : null;
+      data.isLogistic === 0 ? delivery.push("isLogistic") : null;
+      data.isPickUp === 0 ? delivery.push("isPickUp") : null;
       this.goodsForm.delivery = delivery;
-      if(data.expressFreight !== 0) {
-        this.goodsForm.expressFreight = '1';
+      if (data.expressFreight !== 0) {
+        this.goodsForm.expressFreight = "1";
         this.goodsForm.expressFreightNumber = data.expressFreight;
       } else {
-        this.goodsForm.expressFreight = '0';
-      };
+        this.goodsForm.expressFreight = "0";
+      }
       this.goodsForm.validityType = data.validityType.toString();
       this.goodsForm.validityTime = data.validityTime.toString();
       this.goodsForm.verifyDescription = data.verifyDescription;
       this.list = data.list;
       this.goodsForm.specType = data.specType.toString();
-      if(data.specType.toString() === '0') {
+      if (data.specType.toString() === "0") {
         this.goodsForm.priceCurrent = data.priceCurrent;
         this.goodsForm.priceOrigin = data.priceOrigin;
         this.goodsForm.priceCost = data.priceCost;
         this.goodsForm.stock = data.stock;
-      } else if (data.specType.toString() === '1') {
+      } else if (data.specType.toString() === "1") {
         let specArray = data.specArray;
-        for(let specItem of specArray) {
+        for (let specItem of specArray) {
           specItem.popover = false;
-        };
+        }
         this.createSpecs = specArray;
         this.createSpecTable();
       }
@@ -780,7 +833,7 @@ export default {
       let formData = {
         page: 1,
         pageSize: 50,
-        keyword: ''
+        keyword: ""
       };
 
       this.$api.goods.goodsCategory
@@ -803,7 +856,7 @@ export default {
       let formData = {
         page: 1,
         pageSize: 50,
-        keyword: '',
+        keyword: "",
         categoryId: val
       };
 
@@ -824,36 +877,40 @@ export default {
     },
     submitValidate() {
       let flag = true;
-      this.$refs['goodsForm'].validate((valid, object) => {
+      this.$refs["goodsForm"].validate((valid, object) => {
         if (!valid) {
           let key = Object.keys(object)[0];
           let msg = object[key][0].message;
-          this.$message.warning(msg)
+          this.$message.warning(msg);
           flag = false;
         }
       });
-      // 单规格 
-      if(this.goodsForm.specType === '0') {
-        let list = [{
-          attrSpec: {},
-          imageUrl: "",
-          priceCost: this.goodsForm.priceCost,
-          priceCurrent: this.goodsForm.priceCurrent,
-          priceOrigin: this.goodsForm.priceOrigin,
-          skuUuid: "",
-          stock: this.goodsForm.stock
-        }];
+      // 单规格
+      if (this.goodsForm.specType === "0") {
+        let list = [
+          {
+            attrSpec: {},
+            imageUrl: "",
+            priceCost: this.goodsForm.priceCost,
+            priceCurrent: this.goodsForm.priceCurrent,
+            priceOrigin: this.goodsForm.priceOrigin,
+            skuUuid: "",
+            stock: this.goodsForm.stock
+          }
+        ];
         this.list = list;
         this.createSpecs = [];
-      };
-      if(flag) {
-        this.submitForm()
+      }
+      if (flag) {
+        this.submitForm();
       }
     },
     submitForm() {
-      let goodsForm  = this.goodsForm;
+      this.submitLoading = true;
+      let goodsForm = this.goodsForm;
       let formData = {
         productUuid: this.editID,
+        cardType: goodsForm.cardType,
         productType: goodsForm.productType,
         name: goodsForm.name,
         categoryId: goodsForm.categoryId,
@@ -862,37 +919,43 @@ export default {
         atlas: goodsForm.atlas,
         details: goodsForm.details,
         sellingType: goodsForm.sellingType,
-        sellingStartTime: parseInt(goodsForm.sellingTime[0]/1000), 
-        sellingEndTime: parseInt(goodsForm.sellingTime[1]/1000),
-        buyLimitType: goodsForm.buyLimitType ? '0' : '1',
+        sellingStartTime: parseInt(goodsForm.sellingTime[0] / 1000),
+        sellingEndTime: parseInt(goodsForm.sellingTime[1] / 1000),
+        buyLimitType: goodsForm.buyLimitType ? "0" : "1",
         buyLimitNumber: goodsForm.buyLimitNumber,
-        refundSupport: goodsForm.refundSupport ? '0' : '1',
-        isLogistic: this.includes(goodsForm.delivery, 'isLogistic') ? '0' : '1',
-        isPickUp: this.includes(goodsForm.delivery, 'isPickUp') ? '0' : '1',
-        expressFreight: goodsForm.expressFreight === '1' ? goodsForm.expressFreightNumber : '0',
+        refundSupport: goodsForm.refundSupport ? "0" : "1",
+        isLogistic: this.includes(goodsForm.delivery, "isLogistic") ? "0" : "1",
+        isPickUp: this.includes(goodsForm.delivery, "isPickUp") ? "0" : "1",
+        expressFreight:
+          goodsForm.expressFreight === "1"
+            ? goodsForm.expressFreightNumber
+            : "0",
         validityType: goodsForm.validityType,
         validityTime: goodsForm.validityTime,
         verifyDescription: goodsForm.verifyDescription,
         tree: this.createSpecs,
         list: this.list,
-        sort: '1',
-        status: '1'
+        sort: "1",
+        status: "1"
       };
 
       this.$api.goods.goodsManage
-      .submitGoods(formData)
-      .then(res => {
-        if (res.data.code === 0) {
-          let resData = res.data.data;
-          this.$message.success('创建成功！');
-          this.$router.push('/goodsManage/')
-        } else {
-          this.$message.error(res.data.message);
-        }
-      })
-      .catch(err => {
-        console.log(err)
-      });
+        .submitGoods(formData)
+        .then(res => {
+          if (res.data.code === 0) {
+            let resData = res.data.data;
+            // this.uploadCard(resData); // 上传核销码
+            this.resProductUuid = resData.productUuid;
+            this.$refs.importCardUpload.submit();
+          } else {
+            this.$message.error(res.data.message);
+          };
+          this.submitLoading = false;
+        })
+        .catch(err => {
+          console.log(err);
+          this.submitLoading = false;
+        });
     },
     resetForm() {},
     includes(arr, val) {
@@ -1178,24 +1241,25 @@ export default {
             tbody.push(tbObj);
           }
         }
-      };
+      }
 
       this.thead = thead;
       let list = this.list;
-      for(let tbodyItem of tbody) {
-        for(let listItem of list) {
-          if(tbodyItem.s1 === listItem.attrSpec.tree_1 && tbodyItem.s2 === listItem.attrSpec.tree_2 && tbodyItem.s3 === listItem.attrSpec.tree_3) {
+      for (let tbodyItem of tbody) {
+        for (let listItem of list) {
+          if (
+            tbodyItem.s1 === listItem.attrSpec.tree_1 &&
+            tbodyItem.s2 === listItem.attrSpec.tree_2 &&
+            tbodyItem.s3 === listItem.attrSpec.tree_3
+          ) {
             tbodyItem.priceCost = listItem.priceCost;
             tbodyItem.priceCurrent = listItem.priceCurrent;
             tbodyItem.priceOrigin = listItem.priceOrigin;
             tbodyItem.stock = listItem.stock;
           }
         }
-      };
+      }
       this.tbody = tbody;
-      console.log(this.list)
-      console.log(this.createSpecs)
-      debugger
       this.createList(tbody);
     },
     createList(tbody) {
@@ -1216,9 +1280,51 @@ export default {
           }
         };
         list.push(obj);
-      };
+      }
       this.list = list;
       console.log(list);
+    },
+    importCardHandle(event) {
+      // 点击导入核销码 // $refs.importCardInput
+      let inputDOM = this.$refs.importCardInput;
+      let file = inputDOM.files[0];
+      this.importCardFile = file;
+    },
+    inportCardChange(file) {
+      this.importCardFileName = file.name
+    },
+    uploadCard(param) {
+      if(!param.file) {
+        return;
+      };
+
+      let formData = {
+        productUuid: this.resProductUuid,
+        from: this.editID === '' ? '1' : '2',
+        file: param.file
+      };
+      let fd = new FormData();
+      Object.keys(formData).forEach((item, index) => {
+        fd.append(item, formData[item]);
+      });
+
+      this.$api.goods.goodsManage
+        .uploadCard(fd)
+        .then(res => {
+          if (res.data.code === 0) {
+            this.$message.success("创建成功！");
+            this.$router.push("/goodsManage/");
+          } else {
+            this.$message.error(res.data.message);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    downloadCardTemplate() {
+      // 下载核销码模板
+      window.open('https://cdn.xingchen.cn/核销码模板-e55e0ff6-7088-499a-b297-4236f0b25e3b.xlsx')
     }
   }
 };

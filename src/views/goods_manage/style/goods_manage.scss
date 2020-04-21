@@ -366,7 +366,7 @@
     display: inline-block;
     position: relative;
     padding: 0 5px;
-    height: 40px;
+    height: 32px;
     line-height: 40px;
     font-size: 0;
     .text-btn {
@@ -516,4 +516,162 @@
 }
 /**
 * 商品库 创建 end
+*/
+
+
+/**
+* 商品分类 start
+*/
+.goods-category {
+  padding: 10px;
+  .category-tips {
+    line-height: 32px;
+    color: #999;
+  }
+  .opt-btn-box {
+    text-align: right;
+    .el-divider {
+      background-color: #409EFF;
+    }
+  }
+  .category-table {
+    width: 100%;
+    th,td {
+      line-height: 56px;
+      height: 56px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+      padding: 0 10px;
+    }
+    td {
+      color: #666;
+    }
+    th {
+      color: #909399;
+      background: #FAFBFF;
+    }
+    tr:nth-child(even) {
+      background: #FAFBFF;
+    }
+    .collapse-box {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 1px solid #eee;
+      text-align: center;
+      line-height: 14px;
+      cursor: pointer;
+      margin-right: 5px;
+      .icon {
+        font-size: 12px;
+      }
+    }
+    .childrenTr {
+      .firstTd {
+        padding-left: 30px;
+      }
+    }
+  }
+  .pagetion-box {
+    margin: 30px 0 20px;
+    text-align: right;
+  }
+}
+/**
+* 商品分类 end
+*/
+
+
+/**
+* 商品规格 start
+*/
+.goods-spec {
+  padding: 10px;
+  .spec-tips {
+    line-height: 32px;
+    color: #999;
+  }
+  .pagetion-box {
+    margin: 30px 0 20px;
+    text-align: right;
+  }
+  .attr-item {
+    padding-right: 50px;
+    position: relative;
+    margin-bottom: 10px;
+    .del-btn {
+      width: 50px;
+      height: 100%;
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      outline: 0;
+      cursor: pointer;
+      border: 0;
+      background: transparent;
+      color: #409EFF;
+      &:hover {
+        color: rgb(102, 177, 255);;
+      }
+    }
+  }
+  .add-attr-box {
+    text-align: right;
+    padding-right: 50px;
+  }
+  .spec-table {
+    .attr {
+      display: inline-block;
+    }
+  }
+  .opt-btn-box {
+    .el-divider {
+      background-color: #409EFF;
+    }
+  }
+  
+}
+/**
+* 商品规格 end
+*/
+
+
+/**
+* 商品设置 start
+*/
+.goods-setting {
+  padding: 10px;
+  .main-title {
+    height: 32px;
+    padding: 6px 14px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #333;
+    background-color: #FAFBFF;
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 16px;
+      background: #2589FF;
+      position: absolute;
+      left: 0;
+      top: 8px;
+    }
+  }
+  .form-tips {
+    font-size: 14px;
+    line-height: 20px;
+    color: #999;
+  }
+  .form-item {
+    margin: 15px 0;
+  }
+  
+
+}
+/**
+* 商品设置 end
 */

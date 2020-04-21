@@ -5,9 +5,9 @@ const goodsManage = {
     // 属性组列表
     return axios({
       url: `products/attribute/lists`,
-      method: 'get',
+      method: 'post',
       source: 'base',
-      params: formData
+      data: formData
     });
   },
   attributeCreate(formData) {
@@ -62,6 +62,17 @@ const goodsManage = {
       method: 'post',
       source: 'base',
       data: formData
+    });
+  },
+  uploadCard(formData) {
+    // 新建、编辑商品 上传核销码
+    return axios({
+      url: `products/product/importCardNumber`,
+      method: 'post',
+      source: 'base',
+      data: formData,
+      secret: false,
+      headers: {'Content-Type': 'multipart/form-data'}
     });
   },
 }
