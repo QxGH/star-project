@@ -210,12 +210,8 @@ export default {
       this.$router.push("/goodsManage/goodsCreate");
     },
     tabsHandleClick(val) {
-      console.log(val);
       this.pageData.current = 1;
       this.getGoodsList(1);
-    },
-    groupChange(val) {
-      console.log(val);
     },
     getGoodsList(currentPage = 1) {
       let formData = {
@@ -249,10 +245,8 @@ export default {
         });
     },
     pageChange(val) {
-      console.log(val);
-      console.log(this.pageData);
       this.getGoodsList(val);
-      // this.pageData.current = val;
+      this.pageData.current = val;
     },
     getCategoryList() {
       // 获取 分类列表
@@ -365,7 +359,6 @@ export default {
     tableSelectionChange(val) {
       // table 多选
       this.multipleSelection = val;
-      console.log(val);
       if (val.length === this.pageData.size) {
         this.allChecked = true;
       } else {
@@ -386,7 +379,6 @@ export default {
     },
     changeAllSelection(val) {
       // 全选当页 change 事件
-      console.log(val);
       let rows = this.tableData;
       if (val) {
         rows.forEach(row => {

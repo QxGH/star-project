@@ -526,7 +526,7 @@
   padding: 10px;
   .category-tips {
     line-height: 32px;
-    color: #999;
+    color: #FF5050;
   }
   .opt-btn-box {
     text-align: right;
@@ -537,21 +537,21 @@
   .category-table {
     width: 100%;
     th,td {
-      line-height: 56px;
-      height: 56px;
       text-align: left;
       border-bottom: 1px solid #eee;
       padding: 0 10px;
     }
     td {
       color: #666;
+      border-bottom:1px solid rgba(112,112,112,0.1);
     }
     th {
-      color: #909399;
+      color: #666;
       background: #FAFBFF;
-    }
-    tr:nth-child(even) {
-      background: #FAFBFF;
+      line-height: 40px;
+      height: 40px;
+      font-weight: 500;
+      border-bottom:1px solid rgba(112,112,112,0.2);
     }
     .collapse-box {
       display: inline-block;
@@ -566,7 +566,20 @@
         font-size: 12px;
       }
     }
+    .parentTr {
+      line-height: 40px;
+      height: 40px;
+      td {
+        background: #FAFBFF;
+      }
+    }
     .childrenTr {
+      td {
+        line-height: 56px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        height: 76px;
+      }
       .firstTd {
         padding-left: 30px;
       }
@@ -589,7 +602,7 @@
   padding: 10px;
   .spec-tips {
     line-height: 32px;
-    color: #999;
+    color: #FF5050;
   }
   .pagetion-box {
     margin: 30px 0 20px;

@@ -488,17 +488,20 @@
         <el-button type="primary" class="normal-btn" @click="submitValidate()" :loading="submitLoading">上架</el-button>
       </div>
     </el-form>
+    <ImageManage :current="{}" v-if="showImageManage"></ImageManage>
   </div>
 </template>
 
 <script>
 import Tinymce from "@/components/tinymce";
 import deepClone from "@/tools/deepClone";
+import ImageManage from "@/components/image_manage"
 
 export default {
   name: "GoodsCreate",
   components: {
-    Tinymce
+    Tinymce,
+    ImageManage
   },
   data() {
     return {
@@ -745,7 +748,8 @@ export default {
           label: "长期有效",
           value: "0"
         }
-      ]
+      ],
+      showImageManage: false, // 是否显示图片库
     };
   },
   created() {

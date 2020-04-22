@@ -2,7 +2,7 @@
   <!-- 商品分类 -->
   <div class="goods-category">
     <el-button class="normal-btn" type="primary" @click="addCategory">添加分类</el-button>
-    <p class="category-tips">分类下如果有商品，则该分类不可被删除</p>
+    <p class="category-tips">分类下如果有商品，则该分类不可被删除。</p>
     <table class="category-table">
       <thead>
         <tr>
@@ -13,7 +13,7 @@
       </thead>
       <tbody>
         <template v-for="(item, index) in tableData">
-          <tr :key="item.id">
+          <tr :key="item.id" class="parentTr">
             <td>
               <div class="collapse-box" @click="openChildren(item, index)">
                 <template v-if="item.open">
@@ -39,11 +39,17 @@
           <template v-if="item.children.length > 0 && item.open">
             <template v-for="(childrenItem, childrenIndex) of item.children">
               <tr :key="'children'+childrenItem.id" class="childrenTr">
-                <td class="firstTd">{{childrenItem.subclassName}}</td>
+                <td class="firstTd">
+                  <el-image style="width: 56px; height: 56px; vertical-align: top;" :src="childrenItem.url" fit="cover"></el-image>
+                  {{childrenItem.subclassName}}
+                </td>
                 <td>{{childrenItem.productNumber}}</td>
                 <td>
                   <div class="opt-btn-box">
-                    <el-button type="text" @click="editChildAttr(childrenItem, item, childrenIndex)">编辑</el-button>
+                    <el-button
+                      type="text"
+                      @click="editChildAttr(childrenItem, item, childrenIndex)"
+                    >编辑</el-button>
                     <el-divider direction="vertical"></el-divider>
                     <el-button type="text" @click="deleteChildAttr(childrenItem)">删除</el-button>
                   </div>
@@ -64,7 +70,12 @@
         layout="prev, pager, next"
       ></el-pagination>
     </div>
-    <el-dialog :title="isEdit ? '编辑分类' : '新建分类'" :visible.sync="createCategoryDialog" width="460px" center>
+    <el-dialog
+      :title="isEdit ? '编辑分类' : '新建分类'"
+      :visible.sync="createCategoryDialog"
+      width="460px"
+      center
+    >
       <div class="create-category-dialog">
         <el-form :model="createForm" :rules="createFormRules" ref="createForm" label-width="100px">
           <el-form-item label="分类名称：" prop="name">
@@ -80,7 +91,12 @@
         <el-button type="primary" @click="createCategorySubmit">确 定</el-button>
       </span>
     </el-dialog>
-    <el-dialog :title="isEditChild ? '编辑子分类' : '新建子分类'" :visible.sync="createChildrenCategoryDialog" width="460px" center>
+    <el-dialog
+      :title="isEditChild ? '编辑子分类' : '新建子分类'"
+      :visible.sync="createChildrenCategoryDialog"
+      width="460px"
+      center
+    >
       <div class="create-category-dialog">
         <el-form
           :model="childrenForm"
@@ -203,10 +219,10 @@ export default {
         });
     },
     createCategorySubmit() {
-      if(this.isEdit) {
-        this.categoryEdit()
+      if (this.isEdit) {
+        this.categoryEdit();
       } else {
-        this.createCategoryAdd()
+        this.createCategoryAdd();
       }
     },
     createCategoryAdd() {
@@ -264,10 +280,10 @@ export default {
       this.createChildrenCategoryDialog = true;
     },
     createChildCategorySubmit() {
-      if(this.isEditChild) {
-        this.categoryChildEdit()
+      if (this.isEditChild) {
+        this.categoryChildEdit();
       } else {
-        this.createCategoryChildAdd()
+        this.createCategoryChildAdd();
       }
     },
     createCategoryChildAdd() {
@@ -313,8 +329,8 @@ export default {
             this.tempChildData = {};
             this.tempParentData = {};
             this.childrenForm = {
-              name: '',
-              sort: ''
+              name: "",
+              sort: ""
             };
           } else {
             this.$message.error(res.data.message);

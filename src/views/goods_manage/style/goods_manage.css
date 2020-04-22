@@ -612,7 +612,7 @@
 
 .goods-category .category-tips {
   line-height: 32px;
-  color: #999;
+  color: #FF5050;
 }
 
 .goods-category .opt-btn-box {
@@ -628,8 +628,6 @@
 }
 
 .goods-category .category-table th, .goods-category .category-table td {
-  line-height: 56px;
-  height: 56px;
   text-align: left;
   border-bottom: 1px solid #eee;
   padding: 0 10px;
@@ -637,15 +635,16 @@
 
 .goods-category .category-table td {
   color: #666;
+  border-bottom: 1px solid rgba(112, 112, 112, 0.1);
 }
 
 .goods-category .category-table th {
-  color: #909399;
+  color: #666;
   background: #FAFBFF;
-}
-
-.goods-category .category-table tr:nth-child(even) {
-  background: #FAFBFF;
+  line-height: 40px;
+  height: 40px;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(112, 112, 112, 0.2);
 }
 
 .goods-category .category-table .collapse-box {
@@ -661,6 +660,22 @@
 
 .goods-category .category-table .collapse-box .icon {
   font-size: 12px;
+}
+
+.goods-category .category-table .parentTr {
+  line-height: 40px;
+  height: 40px;
+}
+
+.goods-category .category-table .parentTr td {
+  background: #FAFBFF;
+}
+
+.goods-category .category-table .childrenTr td {
+  line-height: 56px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 76px;
 }
 
 .goods-category .category-table .childrenTr .firstTd {
@@ -684,7 +699,7 @@
 
 .goods-spec .spec-tips {
   line-height: 32px;
-  color: #999;
+  color: #FF5050;
 }
 
 .goods-spec .pagetion-box {

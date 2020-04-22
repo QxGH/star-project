@@ -20,7 +20,7 @@ const goodsSpec = {
     });
   },
   deleteSpec(formData) {
-    // 属性值创建
+    // 属性值删除
     return axios({
       url: `products/attribute/delete`,
       method: 'post',
@@ -29,9 +29,18 @@ const goodsSpec = {
     });
   },
   specDetail(formData) {
-    // 属性值创建
+    // 属性值详情
     return axios({
       url: `products/attribute/detail`,
+      method: 'post',
+      source: 'base',
+      data: formData
+    });
+  },
+  specEdit(formData) {
+    // 属性值创建
+    return axios({
+      url: `products/attribute/edit`,
       method: 'post',
       source: 'base',
       data: formData
