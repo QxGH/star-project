@@ -7,7 +7,6 @@ const goodsCategory = {
       url: `products/category/lists`,
       method: 'post',
       source: 'base',
-      secret: false,
       data: formData
     });
   },

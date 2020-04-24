@@ -1,7 +1,7 @@
 // 请求
 import axios from 'axios'
 import store from 'store'
-import { Alert, Message } from 'element-ui'
+import { MessageBox, Message } from 'element-ui'
 import requestUrl from './requestUrl'
 import { AesDecrypt, AesEncrypt } from '@/tools/Crypto'
 
@@ -55,7 +55,10 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(response => {
   if (response.status === 200) {
     if (response.data.code >= 10000) {
-      Alert('用户授权失败', {
+      MessageBox({
+        title: '提示',
+        message: '用户授权失败！',
+        type: 'error',
         confirmButtonText: '确定',
         callback: action => {
           clearCookie();

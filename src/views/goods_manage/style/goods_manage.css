@@ -687,6 +687,34 @@
   text-align: right;
 }
 
+.create-category-dialog .add-image-box .selecct-img {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  background: #D0E9FF;
+  color: #2589FF;
+  text-align: center;
+  line-height: 80px;
+  position: relative;
+  vertical-align: text-bottom;
+  cursor: pointer;
+}
+
+.create-category-dialog .add-image-box .selecct-img .img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.create-category-dialog .add-image-box .tips {
+  margin-left: 10px;
+  color: #999;
+  vertical-align: baseline;
+}
+
 /**
 * 商品分类 end
 */

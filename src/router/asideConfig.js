@@ -83,24 +83,31 @@ const config = [
     id: 4,
     title: '订单管理',
     icon: 'el-icon-document',
-    path: '/3',
+    path: '/order/',
     children: [
       {
-        title: '物流订单',
-        path: '/3-1',
-        roles: ['manager']
-      }, {
-        title: '自提订单',
-        path: '/3-2',
-        roles: ['manager']
-      }, {
-        title: '售后退款',
-        path: '/3-3',
-        roles: ['manager']
-      }, {
-        title: '订单设置',
-        path: '/3-4',
-        roles: ['manager']
+        title: '订单管理',
+        path: '',
+        roles: [],
+        children: [
+          {
+            title: '物流订单',
+            path: '/order/',
+            roles: ['manager']
+          }, {
+            title: '自提订单',
+            path: '/3-2',
+            roles: ['manager']
+          }, {
+            title: '售后退款',
+            path: '/3-3',
+            roles: ['manager']
+          }, {
+            title: '订单设置',
+            path: '/3-4',
+            roles: ['manager']
+          }
+        ]
       }
     ]
   }, {
@@ -141,16 +148,23 @@ const config = [
     id: 8,
     title: '平台设置',
     icon: 'el-icon-setting',
-    path: '/7',
+    path: '/setting/',
     children: [
       {
         title: '平台设置',
-        path: '/7-1',
-        roles: ['admin']
-      }, {
-        title: '门店管理',
-        path: '/7-2',
-        roles: ['manager']
+        path: '',
+        roles: [],
+        children: [
+          {
+            title: '平台设置',
+            path: '/setting/',
+            roles: ['manager']
+          }, {
+            title: '门店管理',
+            path: '/setting/shopManage',
+            roles: ['manager']
+          }
+        ]
       }
     ]
   }

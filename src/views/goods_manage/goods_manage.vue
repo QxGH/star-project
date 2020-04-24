@@ -213,10 +213,10 @@ export default {
       this.pageData.current = 1;
       this.getGoodsList(1);
     },
-    getGoodsList(currentPage = 1) {
+    getGoodsList(currentPage) {
       let formData = {
-        page: currentPage,
-        pageSize: 10,
+        page: currentPage ? currentPage : this.pageData.current,
+        pageSize: this.pageData.size,
         keyword: this.form.name,
         tabConditions: this.tabsActiveName, // 选项卡筛选
         productType: this.form.type,

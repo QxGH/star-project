@@ -3,6 +3,7 @@ const path = require('path');
 let config = {
 	publicPath: "./",
 	outputDir: "dist",
+	assetsDir: "static",
 	lintOnSave: false,
 	runtimeCompiler: false,
 	productionSourceMap: false,
@@ -22,7 +23,7 @@ let config = {
 				'images': '@/assets/images',
 				'style': '@/assets/style',
 				'request': '@/request',
-				'store': '@/store',
+				'store': '@/store'
 			},
 		},
 		externals: {

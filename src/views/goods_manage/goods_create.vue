@@ -168,14 +168,15 @@
         </el-form-item>
         <el-form-item label="图文详情：" prop="details">
           <div class="tiymce-box">
-            <Tinymce
+            <!-- <Tinymce
               :plugins="tinymce.plugins"
               :toolbar="tinymce.toolbar"
               :value="goodsForm.details"
               :height="tinymce.height"
               :isApplet="true"
               @tinymceChange="tinymceChangeHandle"
-            ></Tinymce>
+            ></Tinymce> -->
+            <UE :richText="UeRichText" :width="900" :height="360" @callback="ueChange"></UE>
           </div>
         </el-form-item>
       </div>
@@ -489,19 +490,22 @@
       </div>
     </el-form>
     <ImageManage :current="{}" v-if="showImageManage"></ImageManage>
+    <ShopSelector v-if="showShopSelector"></ShopSelector>
   </div>
 </template>
 
 <script>
 import Tinymce from "@/components/tinymce";
 import deepClone from "@/tools/deepClone";
-import ImageManage from "@/components/image_manage"
+import ImageManage from "@/components/image_manage";
+import ShopSelector from '@/components/shop_selector';
 
 export default {
   name: "GoodsCreate",
   components: {
     Tinymce,
-    ImageManage
+    ImageManage,
+    ShopSelector
   },
   data() {
     return {
@@ -523,6 +527,7 @@ export default {
       },
       categoryList: [], // 商品父级分类
       subCategoryList: [], // 商品子级分类
+      UeRichText: '',
       goodsForm: {
         productType: "1", // 商品类型 0 未知 1 实物商品(需要物流发货信息) 2 虚拟商品,
         cardType: "0",
@@ -750,6 +755,7 @@ export default {
         }
       ],
       showImageManage: false, // 是否显示图片库
+      showShopSelector: false,  // 是否显示选择门店
     };
   },
   created() {
@@ -763,6 +769,9 @@ export default {
   methods: {
     tinymceChangeHandle(val) {
       console.log(val);
+      this.goodsForm.details = val;
+    },
+    ueChange(val) {
       this.goodsForm.details = val;
     },
     getGoodsDetails(editID = "") {

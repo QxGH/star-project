@@ -40,7 +40,7 @@
             <template v-for="(childrenItem, childrenIndex) of item.children">
               <tr :key="'children'+childrenItem.id" class="childrenTr">
                 <td class="firstTd">
-                  <el-image style="width: 56px; height: 56px; vertical-align: top;" :src="childrenItem.url" fit="cover"></el-image>
+                  <el-image style="width: 56px; height: 56px; vertical-align: top;" :src="childrenItem.imageUrl" fit="cover"></el-image>
                   {{childrenItem.subclassName}}
                 </td>
                 <td>{{childrenItem.productNumber}}</td>
@@ -111,6 +111,19 @@
           <el-form-item label="排序：" prop="sort">
             <el-input v-model="childrenForm.sort" placeholder="数字越小越靠前，对应小程序端排序"></el-input>
           </el-form-item>
+          <el-form-item label="封面图：" prop="image">
+            <div class="add-image-box">
+              <div class="selecct-img">
+                <template v-if="childrenForm.imageUrl">
+                  <img :src="childrenForm.imageUrl" alt="" class="img">
+                </template>
+                <template v-else>
+                  <span class="add-text">+添加图片</span>
+                </template>
+              </div>
+              <span class="tips">建议尺寸：200*200像素</span>
+            </div>
+          </el-form-item>
         </el-form>
       </div>
       <span slot="footer" class="dialog-footer">
@@ -140,7 +153,8 @@ export default {
       },
       childrenForm: {
         name: "",
-        sort: ""
+        sort: "",
+        imageUrl: ''
       },
       createFormRules: {
         name: [{ required: true, message: "请填写分类名称", trigger: "blur" }]
@@ -290,7 +304,8 @@ export default {
       let formData = {
         name: this.childrenForm.name,
         sort: this.childrenForm.sort,
-        categoryId: this.tempParentData.id
+        categoryId: this.tempParentData.id,
+        imageUrl: this.childrenForm.imageUrl
       };
       this.$api.goods.goodsCategory
         .childCategoryCreate(formData)
@@ -303,7 +318,8 @@ export default {
           this.createChildrenCategoryDialog = false;
           this.childrenForm = {
             name: "",
-            sort: ""
+            sort: "",
+            imageUrl: ''
           };
           this.getList(1);
         })
@@ -315,6 +331,7 @@ export default {
       let formData = {
         name: this.childrenForm.name,
         sort: this.childrenForm.sort,
+        imageUrl: this.childrenForm.imageUrl,
         subclassId: this.tempChildData.id,
         categoryId: this.tempParentData.id
       };
@@ -330,7 +347,8 @@ export default {
             this.tempParentData = {};
             this.childrenForm = {
               name: "",
-              sort: ""
+              sort: "",
+              imageUrl: ''
             };
           } else {
             this.$message.error(res.data.message);
@@ -380,7 +398,8 @@ export default {
             this.tempParentData.id = parentRow.id;
             this.childrenForm = {
               name: resData.subclassName,
-              sort: resData.sort
+              sort: resData.sort,
+              imageUrl: resData,imageUrl
             };
             this.isEditChild = true;
             this.createChildrenCategoryDialog = true;

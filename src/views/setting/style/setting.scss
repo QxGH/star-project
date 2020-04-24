@@ -1,0 +1,251 @@
+/*
+* 门店管理 start
+*/
+.store-manage {
+  padding: 10px;
+  .serach-input-box {
+    display: inline-block;
+    height: 32px;
+    width: 224px;
+    position: relative;
+    padding-right: 31px;
+    border-radius: 4px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    .search-input {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: transparent;
+      padding: 0 8px;
+    }
+    .search-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: block;
+      height: 100%;
+      width: 31px;
+      background: transparent;
+      border: 0;
+      outline: 0;
+      text-align: center;
+      &:hover {
+        .icon {
+          color: #666;
+        }
+      }
+      .icon {
+        color: #999;
+        font-size: 16px;
+      }
+    }
+  }
+  .create-tips {
+    color: #999;
+    line-height: 20px;
+    margin: 8px 0 16px;
+    .qrcode-tips {
+      color: #2589FF;
+      margin-left: 10px;
+      cursor: pointer;
+      vertical-align: text-bottom;
+    }
+  }
+  .pagetion-box {
+    margin-top: 30px;
+    padding-bottom: 30px;
+    text-align: right;
+  }
+}
+/*
+* 门店管理 end
+*/
+
+
+/*
+* 创建门店 start
+*/
+.create-shop {
+  padding: 16px;
+  .page-title {
+    line-height: 22px;
+    height: 22px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  .max-width-640 {
+    max-width: 640px;
+  }
+  .el-date-editor .el-range-separator {
+    box-sizing: content-box;
+  }
+  .pic-list {
+    .item {
+      float: left;
+      width: 160px;
+      height: 90px;
+      position: relative;
+      margin-right: 20px;
+      &.add-item {
+        line-height: 90px;
+        text-align: center;
+        color: #2589FF;
+        background: #D0E9FF;
+        cursor: pointer;
+      }
+    }
+    .del-btn {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 20px;
+      height: 20px;
+      border-radius:0px 0px 0px 30px;
+      background:rgba(0,0,0,0.5);
+      text-align: right;
+      font-size: 0;
+      cursor: pointer;
+      &:hover {
+        background:rgba(0,0,0,0.6);
+      }
+      .icon {
+        color: #fff;
+        font-size: 16px;
+        line-height: 19px;
+        vertical-align: top;
+      }
+    }
+  }
+  .form-tips {
+    margin-top: 10px;
+    line-height: 20px;
+    height: 20px;
+    color: #999;
+  }
+  .search-addr-btn {
+    margin-left: 20px;
+    width: 80px;
+  }
+  .map-container {
+    margin-top: 16px;
+  }
+}
+/*
+* 创建门店 end
+*/
+
+/*
+* 门店核销员 列表 start
+*/
+.shop-user {
+  padding: 10px;
+  .warning-alert {
+    height: 40px;
+    margin-bottom: 20px;
+    line-height: 40px;
+    background: #FFEFEF;
+    padding: 0 10px;
+    .text, .icon {
+      color: #FF5050;
+      margin-right: 5px;
+    }
+  }
+  .serach-input-box {
+    margin-bottom: 16px;
+    display: inline-block;
+    height: 32px;
+    width: 224px;
+    position: relative;
+    padding-right: 31px;
+    border-radius: 4px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    .search-input {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: transparent;
+      padding: 0 8px;
+    }
+    .search-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: block;
+      height: 100%;
+      width: 31px;
+      background: transparent;
+      border: 0;
+      outline: 0;
+      text-align: center;
+      &:hover {
+        .icon {
+          color: #666;
+        }
+      }
+      .icon {
+        color: #999;
+        font-size: 16px;
+      }
+    }
+  }
+  .pagetion-box {
+    margin-top: 30px;
+    padding-bottom: 30px;
+    text-align: right;
+  }
+}
+/*
+* 门店核销员 列表 end
+*/
+.custom-table-style {
+  &.el-table th {
+    background: #FAFBFF;
+  }
+  &.el-table th>.cell {
+    font-weight: 500;
+    color: #666;
+  }
+  &.el-table--striped .el-table__body tr.el-table__row--striped td {
+    background: #FAFBFF;
+  }
+  &.el-table--enable-row-hover .el-table__body tr:hover>td {
+    background-color: #F5F7FA;
+  }
+  &.el-table td, .el-table th.is-leaf {
+    border: 0;
+  }
+}
+
+
+/*
+* 门店核销员 新建、编辑 start
+*/
+.edit-shop-user {
+  padding: 16px;
+  .page-title {
+    line-height: 22px;
+    height: 22px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  .max-width-640 {
+    max-width: 640px;
+  }
+  .form-tips {
+    margin-top: 10px;
+    line-height: 20px;
+    color: #999;
+  }
+}
+/*
+* 门店核销员 新建、编辑 end
+*/

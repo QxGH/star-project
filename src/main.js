@@ -34,6 +34,14 @@ Vue.config.productionTip = false
 /* Router 全局前置守卫 */
 // router.beforeEach(routerBeforeEach)
 
+import "../public/static/UE/ueditor.config";
+import "../public/static/UE/ueditor.all";
+import "../public/static/UE/lang/zh-cn/zh-cn";
+import "../public/static/UE/ueditor.parse.min";
+
+import UE from '@/components/ueditor'
+Vue.use(UE);
+
 new Vue({
   router,
   store,

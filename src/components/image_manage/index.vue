@@ -229,6 +229,10 @@ export default {
       // 是否多选
       type: Boolean,
       default: true
+    },
+    limit: {
+      type: Number,
+      default: 5
     }
   },
   data() {
