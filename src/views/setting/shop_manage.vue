@@ -19,8 +19,13 @@
     <el-table :data="tableData" class="custom-table-style" stripe style="width: 100%">
       <el-table-column prop="name" label="门店名称"></el-table-column>
       <el-table-column prop="address" label="地址"></el-table-column>
-      <el-table-column prop="tel" label="联系电话"></el-table-column>
-      <el-table-column prop="date" label="营业时间"></el-table-column>
+      <el-table-column prop="telephone" label="联系电话"></el-table-column>
+      <el-table-column prop="business_hours_type" label="营业时间">
+        <template slot-scope="scope">
+          <template v-if="scope.row.business_hours_type === 1">24小时营业</template>
+          <template v-else>{{scope.row.business_hours_start}} - {{scope.row.business_hours_end}}</template>
+        </template>
+      </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button type="text" @click="edit(scope.row)">编辑</el-button>
@@ -50,69 +55,96 @@ export default {
   data() {
     return {
       qrcodeUrl: "https://cdn.xingchen.cn/FuWpghTwGXNLVEW67HgkirGBNRgw",
-      searchVal: '',  // 搜索 key
-      tableData: [
-        {
-          id: '1',
-          name: '门店名称1'
-        }
-      ],
+      searchVal: "", // 搜索 key
+      tableData: [],
       pageData: {
         current: 1,
         size: 10,
         total: 0
-      },
+      }
     };
   },
   created() {
-    // this.getList()
+    this.getList();
   },
   methods: {
     addStore() {
       this.$router.push({
-        path: '/setting/createShop',
+        path: "/setting/createShop",
         query: {
-          shopId: 0
+          shopID: ''
         }
-      })
+      });
     },
     edit(row) {
       this.$router.push({
-        path: '/setting/createShop',
+        path: "/setting/createShop",
         query: {
-          shopId: row.id
+          shopID: row.id
         }
-      })
+      });
     },
     writeOff(row) {
       this.$router.push({
-        path: '/setting/shopUser',
+        path: "/setting/shopUser",
         query: {
-          shopId: row.id
+          shopID: row.id
         }
-      })
+      });
     },
-    del(row) {},
+    del(row) {
+      this.$confirm("是否确认删除该门店?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          let formData = {
+            id: row.id
+          };
+          this.$api.setting.shopManage
+            .deleteShop(formData)
+            .then(res => {
+              if (res.data.code === 0) {
+                this.$message.success('删除成功！')
+              } else {
+                this.$message.error(res.data.message);
+              };
+              this.pageData.current = 1;
+              this.getList(1)
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
+    },
     pageChange(val) {
-      this.getList(val)
+      this.getList(val);
     },
     getList(page) {
       let formData = {
         page: page ? page : this.pageData.current,
-        limit: this.pageData.current,
-        keyword: this.searchVal,
-        region_code: 86, // 地区码
-        status: 1
+        limit: this.pageData.size,
+        keyword: this.searchVal
       };
-
       this.$api.setting.shopManage
         .getShopList(formData)
         .then(res => {
           if (res.data.code === 0) {
-            let resData = res.data.data;
-            debugger
-            this.tableData = resData.items;
-            this.pageData.total = resData.count;
+            if (res.data.data) {
+              let resData = res.data.data;
+              this.tableData = resData.items;
+              this.pageData.total = resData.count;
+            } else {
+              this.tableData = [];
+              this.pageData.total = 0;
+            }
           } else {
             this.$message.error(res.data.message);
           }

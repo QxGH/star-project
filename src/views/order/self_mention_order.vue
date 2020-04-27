@@ -1,5 +1,5 @@
 <template>
-  <!-- 物流订单 -->
+  <!-- 自提订单 -->
   <div class="logistics-order">
     <div class="opt-box">
       <el-form ref="searchForm" :model="searchForm" label-width="90px" size="small">
@@ -25,6 +25,17 @@
         </el-form-item>
         <el-form-item label="商品名称：" prop="name">
           <el-input v-model="searchForm.name" style="width: 240px;"></el-input>
+        </el-form-item>
+        <el-form-item label="商品类型：">
+          <el-select
+            v-model="searchForm.goodsType"
+            prop="goodsType"
+            placeholder="请选择"
+            style="width: 240px;"
+          >
+            <el-option label="实物商品" value="1"></el-option>
+            <el-option label="核销商品" value="2"></el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="订单来源：">
           <el-select
@@ -72,6 +83,7 @@
             <th>数量</th>
             <th>收获信息</th>
             <th>实收金额</th>
+            <th>已核销/未核销</th>
             <th>订单状态</th>
             <th>操作</th>
           </tr>
@@ -79,13 +91,12 @@
         <tbody>
           <template>
             <tr>
-              <td class="blank-td" colspan="6"></td>
+              <td class="blank-td" colspan="7"></td>
             </tr>
             <tr>
-              <td class="title-td" colspan="6">
+              <td class="title-td" colspan="7">
                 <span class="title-item">订单号：6214830214598023</span>
                 <span class="title-item">下单时间：2020-5-25 22:23:23</span>
-                <button class="refund-btn" @click="activeRefundHandle">主动给买家退款</button>
               </td>
             </tr>
             <tr class="info-tr">
@@ -125,20 +136,15 @@
               </td>
               <td class="text-center">
                 <p class="price">￥66.99</p>
-                <p>包邮</p>
+              </td>
+              <td class="text-center">
+                1/2
               </td>
               <td class="text-center">待付款</td>
               <td class="text-center">
-                <el-button type="text" @click="deliverGoodsHandle">发货</el-button>
-                <el-divider direction="vertical"></el-divider>
                 <el-button type="text" @click="refundApplyHandle">退款</el-button>
                 <el-divider direction="vertical"></el-divider>
                 <el-button type="text" @click="lookOrderDetails">查看详情</el-button>
-              </td>
-            </tr>
-            <tr>
-              <td class="leaving-message-td" colspan="6">
-                <p class="leaving-message">买家留言：这里是买家的留言备注信息。</p>
               </td>
             </tr>
           </template>
@@ -330,6 +336,7 @@ export default {
       searchForm: {
         searchType: "1",
         searchVal: "",
+        goodsType: '1',
         date: [],
         name: "",
         origin: "0"
@@ -394,14 +401,6 @@ export default {
     },
     tabsChange(val) {},
     pageChange(val) {},
-    deliverGoodsHandle(row) {
-      // 发货
-      this.deliverGoods = true;
-    },
-    activeRefundHandle(row) {
-      // 主动退款
-      this.activeRefundDialog = true;
-    },
     onlyInputInt(val) {
       this.refundForm.refoundNumber = val.replace(/^(0+)|[^\d]+/g, "");
     },
@@ -412,7 +411,7 @@ export default {
     lookOrderDetails(row) {
       // 查看详情
       this.$router.push({
-        path: '/order/logisticsOrderDetails'
+        path: '/order/selfMentionOrderDetails'
       })
     } 
   }

@@ -185,6 +185,27 @@ const routes = [
             meta: {
               roles: ['manager'],
             }
+          }, {
+            path: 'logisticsOrderDetails',
+            name: 'LogisticsOrderDetails',  // 物流订单详情
+            component: () => import('@/views/order/logistics_order_details'),
+            meta: {
+              roles: ['manager'],
+            }
+          }, {
+            path: 'selfMentionOrder',
+            name: 'SelfMentionOrder',  // 自提订单
+            component: () => import('@/views/order/self_mention_order'),
+            meta: {
+              roles: ['manager'],
+            }
+          }, {
+            path: 'selfMentionOrderDetails',
+            name: 'SelfMentionOrderDetails',  // 自提订单详情
+            component: () => import('@/views/order/self_mention_order_details'),
+            meta: {
+              roles: ['manager'],
+            }
           }
         ]
       }, {

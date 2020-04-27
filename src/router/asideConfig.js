@@ -96,7 +96,7 @@ const config = [
             roles: ['manager']
           }, {
             title: '自提订单',
-            path: '/3-2',
+            path: '/order/selfMentionOrder',
             roles: ['manager']
           }, {
             title: '售后退款',

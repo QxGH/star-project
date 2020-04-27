@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1739655_i6xsbxu72zp.css">
-    <title><%= htmlWebpackPlugin.options.title %></title>
 
-    <%= 
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1739655_i6xsbxu72zp.css">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+
+  <%= 
     process.env.NODE_ENV === 'development' 
     ? 
     `
@@ -31,18 +32,20 @@
     <script src="https://lib.baomitu.com/crypto-js/3.1.9/crypto-js.min.js"></script>
     `
     %>
-
-    <!-- element -->
+   
     <script src="https://lib.baomitu.com/element-ui/2.12.0/index.js"></script>
-    <link href="https://lib.baomitu.com/element-ui/2.12.0/theme-chalk/index.css" rel="stylesheet" >
-    <link rel="stylesheet" href="./static/style/scroll.css">
-	  <script charset="utf-8" src="https://map.qq.com/api/js?v=2.exp&key=6NNBZ-F7P3J-QLTFG-FQMOX-RCURZ-YVFM3"></script>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+    <link href="https://lib.baomitu.com/element-ui/2.12.0/theme-chalk/index.css" rel="stylesheet" > 
+  <link rel="stylesheet" href="./static/style/scroll.css">
+  <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=34d84c9c714449870ff1297f0f396cd3&plugin=AMap.Autocomplete&plugin=AMap.Geocoder"></script>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+      Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
 </html>

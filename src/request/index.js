@@ -32,11 +32,15 @@ service.interceptors.request.use(config => {
     default:
   };
 
-  if (config.tokenType == 'user') {
+  if(process.env.NODE_ENV === 'development') {
+    // 开发环境
+    config.headers.token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImlzcyI6IiIsImF1ZCI6ImxvY2FsaG9zdCIsImp0aSI6IiJ9.eyJpc3MiOiIiLCJhdWQiOiJsb2NhbGhvc3QiLCJqdGkiOiIiLCJpYXQiOjE1ODc5NTAzOTksIm5iZiI6MTU4Nzk1MDM5OSwiZXhwIjoxNTg4NTU1MTk5LCJyb2xlIjoiYnVzaW5lc3MiLCJiaWQiOjIsImJ0b2tlbiI6Ijk2OTJlZmQyMTdiNzg1ZGM3ZGE2NWIxN2NiYWUyYmM0IiwibmFtZSI6IjE3NjkxMzQ4NDU5IiwicGhvbmUiOiIxNzY5MTM0ODQ1OSIsImluZHVzdHJ5SWQiOjEsIm1pZCI6MiwibXRva2VuIjoiOWM5ODdmYzBmYjYyYjE5OTIxZTJiMjE2YThkN2M5NGYiLCJjdXJyZW50QnRva2VuIjoiOTY5MmVmZDIxN2I3ODVkYzdkYTY1YjE3Y2JhZTJiYzQiLCJpc093bmVyIjp0cnVlLCJyb2xlcyI6WyJtYXN0ZXIiXSwic3dpdGNoVGltZSI6MTU4Nzk1MDQwNX0.4Jj4tje-PRZUP3Z3y2DHQf1RMNwCwN39htGLwVH3FEY'
+  } else if (config.tokenType == 'user') {
     config.headers.token = getUserToken();
   } else {
     config.headers.token = getStoreToken();
   };
+
 
   //判断baseURL
   if (config.source === 'base') {
@@ -54,7 +58,7 @@ service.interceptors.request.use(config => {
 // request interceptor
 service.interceptors.response.use(response => {
   if (response.status === 200) {
-    if (response.data.code >= 10000) {
+    if (response.data.code >= 10000 && response.data.code <= 10007) {
       MessageBox({
         title: '提示',
         message: '用户授权失败！',
