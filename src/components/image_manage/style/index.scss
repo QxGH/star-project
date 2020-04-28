@@ -275,6 +275,7 @@
   .inage-upload-box {
     padding: 30px 25px 40px 80px;
     .form-group-item {
+      position: relative;
       line-height: 32px;
       margin-bottom: 30px;
       .form-label {
@@ -284,6 +285,14 @@
       }
       .form-ctrl {
         padding-left: 90px;
+      }
+      .choose-group-warning {
+        position: absolute;
+        bottom: -25px;
+        line-height: 25px;
+        height: 25px;
+        left: 90px;
+        color: #F56C6C;
       }
     }
     .upload-tips {

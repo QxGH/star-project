@@ -314,6 +314,7 @@
 }
 
 .image-manage-dialog .inage-upload-box .form-group-item {
+  position: relative;
   line-height: 32px;
   margin-bottom: 30px;
 }
@@ -326,6 +327,15 @@
 
 .image-manage-dialog .inage-upload-box .form-group-item .form-ctrl {
   padding-left: 90px;
+}
+
+.image-manage-dialog .inage-upload-box .form-group-item .choose-group-warning {
+  position: absolute;
+  bottom: -25px;
+  line-height: 25px;
+  height: 25px;
+  left: 90px;
+  color: #F56C6C;
 }
 
 .image-manage-dialog .inage-upload-box .upload-tips {

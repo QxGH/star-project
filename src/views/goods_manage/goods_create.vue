@@ -154,15 +154,17 @@
             <template v-for="(item, index) in goodsForm.atlas">
               <div class="item img-item" :key="index">
                 <el-image style="width: 88px; height: 88px" :src="item" fit="cover"></el-image>
-                <span class="close-btn">
+                <span class="close-btn" @click="deleteGoodsPic(index)">
                   <i class="el-icon-close close-icon"></i>
                 </span>
               </div>
             </template>
-            <div class="item add-item">
-              <i class="el-icon-plus add-icon"></i>
-              <span>添加图片</span>
-            </div>
+            <template v-if="goodsForm.atlas.length < 6">
+              <div class="item add-item" @click="checkGoodsPic">
+                <i class="el-icon-plus add-icon"></i>
+                <span>添加图片</span>
+              </div>
+            </template>
           </div>
           <p class="form-tips">建议尺寸：750 * 750 像素，最大1M，最多6张，第一张将用于列表展示。</p>
         </el-form-item>
@@ -489,7 +491,7 @@
         <el-button type="primary" class="normal-btn" @click="submitValidate()" :loading="submitLoading">上架</el-button>
       </div>
     </el-form>
-    <ImageManage :current="{}" v-if="showImageManage"></ImageManage>
+    <ImageManage :limit="imageManageLimit" @checkedImage="checkedImageHandle" v-if="showImageManage"></ImageManage>
     <ShopSelector v-if="showShopSelector"></ShopSelector>
   </div>
 </template>
@@ -536,9 +538,7 @@ export default {
         categoryId: "", // 父级分类ID
         subclassId: "", // 子级分类ID
         description: "", // 分享描述
-        atlas: [
-          "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
-        ], /// 商品图
+        atlas: [], /// 商品图
         details: "", // 商品详情
         specType: "0", // 规格类型
         specSetting: true, // 规格设置
@@ -755,6 +755,7 @@ export default {
         }
       ],
       showImageManage: false, // 是否显示图片库
+      imageManageLimit: 6,  // 图片库 limit 
       showShopSelector: false,  // 是否显示选择门店
     };
   },
@@ -1338,6 +1339,29 @@ export default {
     downloadCardTemplate() {
       // 下载核销码模板
       window.open('https://cdn.xingchen.cn/核销码模板-e55e0ff6-7088-499a-b297-4236f0b25e3b.xlsx')
+    },
+    deleteGoodsPic(index) {
+      let atlas = this.goodsForm.atlas;
+      atlas.splice(index, 1);
+      this.goodsForm.atlas = atlas;
+    },
+    checkGoodsPic() {
+      // 选择商品图
+      let length = this.goodsForm.atlas.length;
+      this.imageManageLimit = 6 - length;
+      this.showImageManage = true;
+    },
+    checkedImageHandle(val) {
+      this.showImageManage = false;
+      if(val.length > 0) {
+        let list = [];
+        let atlas = this.goodsForm.atlas;
+        for(let item of val) {
+          list.push(item.src)
+        };
+        let atlasRes = [...atlas, ...list];
+        this.goodsForm.atlas = atlasRes;
+      };
     }
   }
 };

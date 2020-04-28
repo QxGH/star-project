@@ -4,8 +4,8 @@ let url = {};
 if(process.env.NODE_ENV == 'development') {
   url = {
     baseUrl: 'http://kernel.services.test.xingchen.cn/',
-    qiniuUrl: 'https://up.qiniup.com',
-    staticUrl: 'https://qiniu.xingchen.cn'
+    qiniuUrl: 'https://api.services.xingchen.cn/',
+    staticUrl: 'https://cdn.xingchen.cn/'
   };
 };
 
@@ -13,8 +13,8 @@ if(process.env.NODE_ENV == 'development') {
 if(process.env.NODE_ENV == 'test') {
   url = {
     baseUrl: 'https://www.fastmock.site/mock/bd760dd8ed7013045d3016137fe3801f/api',
-    qiniuUrl: 'https://up.qiniup.com',
-    staticUrl: 'https://qiniu.xingchen.cn'
+    qiniuUrl: 'https://api.services.xingchen.cn/',
+    staticUrl: 'https://cdn.xingchen.cn/'
   };
 };
 
@@ -22,8 +22,8 @@ if(process.env.NODE_ENV == 'test') {
 if(process.env.NODE_ENV == 'production') {
   url = {
     baseUrl: 'https://api.services.xingchen.cn',
-    qiniuUrl: 'https://up.qiniup.com',
-    staticUrl: 'https://qiniu.xingchen.cn'
+    qiniuUrl: 'https://api.services.xingchen.cn/',
+    staticUrl: 'https://cdn.xingchen.cn/'
   };
 };
 

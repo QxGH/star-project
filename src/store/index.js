@@ -7,7 +7,7 @@ Vue.use(Vuex)
 const state = {
   breadcrumb: "平台名称",
   requestSource: 'pc',
-  domainURL: process.env.NODE_ENV == 'production' ? 'https://www.xingchen.cn' : 'https://testadmin.xingchen.cn'
+  domainURL: process.env.NODE_ENV == 'production' ? 'xingchen.cn' : process.env.NODE_ENV == 'test' ? 'test.xingchen.cn' : 'localhost'
 };
 const mutations = {
   CHANGE_BREADCRUMB(state, val) {
